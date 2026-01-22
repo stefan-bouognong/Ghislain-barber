@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_NUMBER = "237600000000"; // Replace with actual number
+const WHATSAPP_NUMBERs = "+1 (301) 732-9975"; // Replace with actual number
+const WHATSAPP_NUMBER = "+237658821355";
 
 const services = [
   "Coupe Homme",
