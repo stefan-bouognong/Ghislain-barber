@@ -40,7 +40,7 @@ const BookingSection = () => {
     if (!formData.name.trim() || !formData.phone.trim() || !formData.service) {
       toast({
         title: "Champs requis",
-        description: "Veuillez remplir tous les champs obligatoires.",
+        description: "Veuillez remplir tous les champs obligatoires ci-dessous.",
         variant: "destructive",
       });
       return;
