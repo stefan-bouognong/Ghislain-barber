@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_NUMBERs = "+1 (301) 732-9975"; // Replace with actual number
-const WHATSAPP_NUMBER = "+237658821355";
+// const WHATSAPP_NUMBERs = "+1 (301) 732-9975";
+const WHATSAPP_NUMBER = "237658821355";
 
 const services = [
   "Coupe Homme",
@@ -35,6 +35,7 @@ const BookingSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+  
     // Validation
     if (!formData.name.trim() || !formData.phone.trim() || !formData.service) {
       toast({
@@ -44,20 +45,35 @@ const BookingSection = () => {
       });
       return;
     }
+  
+    const whatsappMessage = encodeURIComponent(
+      `Bonjour Ghislain Barber 👋✂️
+  
+  Je souhaite prendre rendez-vous.
+  
+  👤 Nom : ${formData.name}
+  📞 Téléphone : ${formData.phone}
+  💈 Service : ${formData.service}
+  📅 Date souhaitée : ${formData.date || "Non précisée"}
+  📝 Message : ${formData.message || "Aucun"}
+  
+  Merci !`
+    );
+  
+    // Ouvre WhatsApp
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`,
+      "_blank"
+    );
+  
     setIsSubmitted(true);
+  
     toast({
-      title: "Demande envoyée !",
-      description: "Nous vous contacterons sous peu pour confirmer votre rendez-vous.",
+      title: "Redirection vers WhatsApp",
+      description: "Finalisez votre réservation sur WhatsApp.",
     });
   };
-
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent(
-      `Bonjour Ghislain Barber ! Je souhaite prendre rendez-vous.\n\nNom: ${formData.name || "[Votre nom]"}\nService: ${formData.service || "[Service souhaité]"}\nDate souhaitée: ${formData.date || "[Date]"}`
-    );
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
-  };
-
+  
   return (
     <section id="rendez-vous" className="section-padding bg-secondary">
       <div className="container-custom mx-auto">
@@ -83,7 +99,7 @@ const BookingSection = () => {
               variant="whatsapp"
               size="xl"
               className="w-full sm:w-auto mb-8"
-              onClick={handleWhatsApp}
+              onClick={handleSubmit}
             >
               <MessageCircle className="w-5 h-5" />
               Réserver via WhatsApp
