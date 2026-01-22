@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, Send, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_NUMBER = "1 (301) 732-9975";
+const WHATSAPP_NUMBER = "1(301)732-9975";
 
 
 const services = [
